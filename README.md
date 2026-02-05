@@ -9,6 +9,14 @@
 
 Stay updated on SpaceX launches, missions, and news with this feature-rich mobile application. Explore stunning images and videos, track launches, learn about rockets and ships, meet crew members, and interact with **Cosmo** - an intelligent AI chatbot assistant that answers your space-related questions. Built with Flutter for Android, iOS, Web, and Desktop platforms.
 
+![](https://github.com/Ghadz/Programmation-des-terminaux-mobiles-Project/blob/main/screenshots/WhatsApp%20Image%202026-02-05%20at%2019.03.38.jpeg)
+![](https://github.com/Ghadz/Programmation-des-terminaux-mobiles-Project/blob/main/screenshots/WhatsApp%20Image%202026-02-05%20at%2019.03.39.jpeg)
+![](https://github.com/Ghadz/Programmation-des-terminaux-mobiles-Project/blob/main/screenshots/WhatsApp%20Image%202026-02-05%20at%2019.04.37.jpeg)
+![](https://github.com/Ghadz/Programmation-des-terminaux-mobiles-Project/blob/main/screenshots/WhatsApp%20Image%202026-02-05%20at%2019.04.55.jpeg)
+![](https://github.com/Ghadz/Programmation-des-terminaux-mobiles-Project/blob/main/screenshots/WhatsApp%20Image%202026-02-05%20at%2019.05.24.jpeg)
+![](https://github.com/Ghadz/Programmation-des-terminaux-mobiles-Project/blob/main/screenshots/WhatsApp%20Image%202026-02-05%20at%2019.05.37.jpeg)
+![](https://github.com/Ghadz/Programmation-des-terminaux-mobiles-Project/blob/main/screenshots/WhatsApp%20Image%202026-02-05%20at%2019.05.58.jpeg)
+
 ---
 
 ## Demnstration Video: https://drive.google.com/file/d/1aHF3TCI6FaUMtUL3t-AHUh0AkkZ1cGuT/view?usp=sharing
@@ -282,6 +290,6 @@ If you find this project useful, please consider giving it a star! ⭐
   <strong>Made with ❤️ and ☕ to Dr Aoude</strong><br>
   <em>Powered by AI 🤖 | Exploring Space 🚀 | Built with Flutter 💙</em>
 </p>
-![m](https://github.com/Ghadz/Programmation-des-terminaux-mobiles-Project/blob/main/screenshots/WhatsApp%20Image%202026-02-05%20at%2019.03.38.jpeg)
+
 
 

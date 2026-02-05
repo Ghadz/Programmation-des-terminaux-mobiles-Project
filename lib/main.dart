@@ -7,9 +7,11 @@ import 'package:spacex/core/utils/dependency_injection.dart';
 import 'package:spacex/core/utils/shared_preferences.dart';
 import 'package:spacex/firebase_options.dart';
 import 'package:spacex/spacex_app.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  sqfliteFfiInit();
   setupGetIt();
   await MySharedPreferences.init();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(

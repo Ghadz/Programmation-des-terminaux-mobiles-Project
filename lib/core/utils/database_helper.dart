@@ -8,81 +8,122 @@ class DataBaseHelper {
   static const String databaseName = "saved_items.db";
   static const String tableName = "saved";
 
-  get db async {
-    if (_db == null) {
-      String path = join(await getDatabasesPath(), databaseName);
-      _db = await openDatabase(path,
-          version: 1, onCreate: _onCreate, onUpgrade: _onUpgrade);
-      return _db;
-    }
-    return _db;
+  // FIX #1: Return Future<Database> instead of dynamic
+  Future<Database> get db async {
+    if (_db != null) return _db!;
+
+    String path = join(await getDatabasesPath(), databaseName);
+    _db = await openDatabase(
+      path,
+      version: 1,
+      onCreate: _onCreate,
+      onUpgrade: _onUpgrade,
+    );
+    return _db!;
   }
 
-  _onCreate(Database db, int version) async {
+  // FIX #2: Make methods Future
+  Future<void> _onCreate(Database db, int version) async {
     await db.execute('''
-  CREATE TABLE $tableName (
+      CREATE TABLE $tableName (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT NOT NULL,
+        title TEXT NOT NULL UNIQUE,
         type TEXT NOT NULL,
         image TEXT NOT NULL,
         location TEXT NOT NULL
-        )
-''');
+      )
+    ''');
   }
 
-  _onUpgrade(Database db, int oldVersion, int newVersion) async {
-    await db.execute('drop table $tableName');
+  Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
+    await db.execute('DROP TABLE IF EXISTS $tableName');
     await _onCreate(db, newVersion);
   }
 
+  // FIX #3: Add proper error handling and use ConflictAlgorithm
   Future<SavedItemModel> saveItem(SavedItemModel item) async {
-    Database clint = await db;
-    int record = await clint.insert(tableName, {
-      'id': item.id,
-      'title': item.title,
-      'type': item.type,
-      'image': item.imageUrl,
-      'location': item.country,
-    });
-    item.id = record;
-    return item;
-  }
-
-  Future<List<SavedItemModel>> getSavedItems() async {
-    Database clint = await db;
-    List<Map> savedItems = await clint.query(tableName,
-        columns: ["id", "title", "image", "location", "type"]);
-    List<SavedItemModel> allItems = [];
-    if (savedItems.isNotEmpty) {
-      for (int i = 0; i < savedItems.length; i++) {
-        SavedItemModel s = SavedItemModel(
-          id: savedItems[i]['id'],
-          title: savedItems[i]['title'],
-          imageUrl: savedItems[i]['image'],
-          country: savedItems[i]['location'],
-          type: savedItems[i]['type'],
-        );
-        allItems.add(s);
-      }
+    try {
+      Database database = await db;
+      int record = await database.insert(
+        tableName,
+        {
+          'title': item.title,
+          'type': item.type,
+          'image': item.imageUrl,
+          'location': item.country,
+        },
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+      return SavedItemModel(
+        id: record,
+        title: item.title,
+        imageUrl: item.imageUrl,
+        country: item.country,
+        type: item.type,
+      );
+    } catch (e) {
+      throw Exception('Error saving item: $e');
     }
-    return allItems;
   }
 
+  // FIX #4: Proper type casting and error handling
+  Future<List<SavedItemModel>> getSavedItems() async {
+    try {
+      Database database = await db;
+      List<Map<String, dynamic>> savedItems = await database.query(
+        tableName,
+        columns: ["id", "title", "image", "location", "type"],
+      );
+
+      return savedItems.map((item) {
+        return SavedItemModel(
+          id: item['id'] as int,
+          title: item['title'] as String,
+          imageUrl: item['image'] as String,
+          country: item['location'] as String,
+          type: item['type'] as String,
+        );
+      }).toList();
+    } catch (e) {
+      throw Exception('Error retrieving items: $e');
+    }
+  }
+
+  // FIX #5: Better null safety and error handling
   Future<bool> isSaved(String itemTitle) async {
-    Database clint = await db;
-    List<Map<String, dynamic>> items = await clint.query(
-      tableName,
-      where: "title = ?",
-      whereArgs: [itemTitle],
-    );
-    return items.isNotEmpty;
+    try {
+      Database database = await db;
+      List<Map<String, dynamic>> result = await database.query(
+        tableName,
+        where: "title = ?",
+        whereArgs: [itemTitle],
+        limit: 1,
+      );
+      return result.isNotEmpty;
+    } catch (e) {
+      throw Exception('Error checking saved item: $e');
+    }
   }
 
+  // FIX #6: Return int instead of Future<int>
   Future<int> delete(String title) async {
-    Database clint = await db;
-    Future<int> numOfRecord =
-    clint.delete(tableName, where: "title=?", whereArgs: [title]);
-    return numOfRecord;
+    try {
+      Database database = await db;
+      return await database.delete(
+        tableName,
+        where: "title = ?",
+        whereArgs: [title],
+      );
+    } catch (e) {
+      throw Exception('Error deleting item: $e');
+    }
   }
 
+  // FIX #7: Add close method for cleanup
+  Future<void> close() async {
+    if (_db != null) {
+      await _db!.close();
+      _db = null;
+    }
+  }
 }

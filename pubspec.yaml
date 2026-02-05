@@ -12,13 +12,13 @@ dependencies:
   flutter:
     sdk: flutter
 
+  just_audio: ^0.9.44
+  sqflite_common_ffi: ^2.2.8+4
   cupertino_icons: ^1.0.6
   # for custom icons
   font_awesome_flutter: ^10.7.0
   # for splash screen
   flutter_native_splash: ^2.4.0
-  # for app icon
-  flutter_launcher_icons: ^0.13.1
   # for error handling
   dartz: ^0.10.1
   # show toast
@@ -46,42 +46,47 @@ dependencies:
   dio: ^5.4.3+1
   retrofit: ^4.1.0
   retrofit_generator: ^8.1.0
-  #url launcher
+  # url launcher
   url_launcher: ^6.2.6
-  #display images with scroll
+  # display images with scroll
   carousel_slider: ^5.0.0
-  #cool and beautiful text animations.
+  # cool and beautiful text animations
   animated_text_kit: ^4.2.0
   gradient_borders: ^1.0.0
-
-  #for local database to store saved items
+  # for local database to store saved items
   sqflite: ^2.3.3+1
-  #bottom nav bar icons with cool animation
+  # bottom nav bar icons with cool animation
   rive: ^0.13.4
-  #Agora Streaming
+  # Agora Streaming
   agora_rtc_engine: ^6.4.2
   permission_handler: ^11.3.1
-  #secure token
+  # secure token
   flutter_secure_storage: ^4.2.1
-flutter_launcher_icons:
-  android: "ic_launcher"
-  ios: true
-  image_path: "assets/app_icon/icon.png"
-  min_sdk_android: 21 
+  http: ^1.1.0
+  sembast: ^3.5.0
+  sembast_web: ^2.1.0
+  path_provider: ^2.1.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
   build_runner: ^2.4.9
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "assets/app_icon/icon.png"
+  min_sdk_android: 21
 
 flutter:
-
   uses-material-design: true
   assets:
     - assets/images/
     - assets/splash/
     - assets/app_icon/
+    - assets/Audios/
 
   fonts:
     - family: TR

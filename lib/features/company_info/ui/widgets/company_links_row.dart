@@ -7,7 +7,7 @@ companyLinkRow(String twitterLink, String websiteLink, String flickrLink) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
-      costomIconButton(twitterLink, FontAwesomeIcons.twitter, 'twitter'),
+      costomIconButton(twitterLink, FontAwesomeIcons.xTwitter, 'X'),
       const SizedBox(width: 10),
       costomIconButton(websiteLink, FontAwesomeIcons.globe, 'website'),
       const SizedBox(width: 10),

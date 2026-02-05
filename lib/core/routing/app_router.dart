@@ -21,6 +21,8 @@ import 'package:spacex/features/register/ui/register_screen.dart';
 import 'package:spacex/features/saved_items/logic/cubits/saved_items_cubit.dart';
 import 'package:spacex/features/ships/ui/ships.dart';
 import 'package:spacex/features/streams/ui/screens/agora_streaming.dart';
+import 'package:spacex/features/chatbot/ui/chatbot_screen.dart';
+
 
 import '../../features/company_info/ui/company_info_screen.dart';
 import '../../features/home/data/models/rocket_model.dart';
@@ -131,6 +133,12 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => const AgoraStreaming(),
         );
+
+      case Routes.chatbotScreen:
+        return MaterialPageRoute(
+          builder: (context) => ChatbotScreen(),
+        );
+
     }
     return null;
   }

@@ -8,6 +8,7 @@ import 'package:spacex/features/layout/ui/widgets/custom_animated_bar.dart';
 import 'package:spacex/features/profile/ui/profile_screen.dart';
 import 'package:spacex/features/saved_items/ui/saved_items_screen.dart';
 import 'package:spacex/features/streams/ui/screens/stream_intro.dart';
+import 'package:spacex/features/chatbot/ui/chatbot_screen.dart'; 
 
 class LayoutScreen extends StatefulWidget {
   const LayoutScreen({super.key});
@@ -53,7 +54,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
     const SavedItemsScreen(),
     const CompanySectionsScreen(),
     const HomeScreen(),
-    const StreamingIntroScreen(),
+    ChatbotScreen(),
     const ProfileScreen(),
   ];
 

@@ -52,24 +52,41 @@ class CrewMemberItem extends StatelessWidget {
           ),
           child: Hero(
             tag: crewMember.image,
-            child: CachedNetworkImage(
-              imageUrl: crewMember.image,
+
+            child: Image.network(
+              crewMember.image ?? '',
               fit: BoxFit.cover,
-              progressIndicatorBuilder: (context, url, progress) {
-                return CustomShimmerLoading(
-                  child: Container(
-                    height: MediaQuery.sizeOf(context).height * 0.3,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  color: Colors.grey[800],
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.person, size: 50, color: Colors.white54),
+                      const SizedBox(height: 8),
+                      const Text('Image not available', style: TextStyle(color: Colors.white54)),
+                    ],
+                  ),
+                );
+              },
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return Container(
+                  color: Colors.grey[800],
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                          loadingProgress.expectedTotalBytes!
+                          : null,
                     ),
                   ),
                 );
               },
+            )
             ),
           ),
         ),
-      ),
     );
   }
 }

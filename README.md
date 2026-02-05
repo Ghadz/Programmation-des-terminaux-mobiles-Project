@@ -282,6 +282,6 @@ If you find this project useful, please consider giving it a star! ⭐
   <strong>Made with ❤️ and ☕ to Dr Aoude</strong><br>
   <em>Powered by AI 🤖 | Exploring Space 🚀 | Built with Flutter 💙</em>
 </p>
-![](https://github.com/Ghadz/Programmation-des-terminaux-mobiles-Project/blob/main/screenshots/WhatsApp%20Image%202026-02-05%20at%2019.03.38.jpeg)
+![m](https://github.com/Ghadz/Programmation-des-terminaux-mobiles-Project/blob/main/screenshots/WhatsApp%20Image%202026-02-05%20at%2019.03.38.jpeg)
 
 
